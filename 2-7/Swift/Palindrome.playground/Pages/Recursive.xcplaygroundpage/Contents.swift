@@ -102,7 +102,6 @@ do {
         .map { LinkedListNode(collection: $0) }
         .map { checkRecursively(head: $0, length: $0.length) }
         .map { $0.isPalindrome }
-        .forEach { assert($0) }
     palindromes
         .map { LinkedListNode(collection: $0) }
         .map { isPalindrome(node: $0) }
