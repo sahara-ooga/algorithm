@@ -5,7 +5,7 @@
  */
 enum RecursiveResult<Element: Equatable>{
     case different
-    case equal(next: LinkedListNode<Element>?)
+    case palindrome(next: LinkedListNode<Element>?)
     
     init(lhs: LinkedListNode<Element>, rhs: LinkedListNode<Element>?) {
         guard let lElement = lhs.element,
@@ -13,7 +13,7 @@ enum RecursiveResult<Element: Equatable>{
                 self = .different; return
         }
         if lElement == rElement {
-            self = .equal(next: rhs?.next)
+            self = .palindrome(next: rhs?.next)
         } else {
             self = .different
         }
@@ -27,10 +27,10 @@ func checkRecursively2<Element: Equatable>(
         return RecursiveResult.different
     }
     if head.element == nil || length == 0 {
-        return RecursiveResult.equal(next: head.next)
+        return RecursiveResult.palindrome(next: head.next)
     } else if length == 1 {
         //元のリストは奇数長で、渡されてきたnodeは真ん中の要素である
-        return RecursiveResult.equal(next: head.next)//次の要素を返す
+        return RecursiveResult.palindrome(next: head.next)//次の要素を返す
     } else if length == 2 {
         //ちょうど中間地点の２つを比較する
         return RecursiveResult(
@@ -44,7 +44,7 @@ func checkRecursively2<Element: Equatable>(
     switch middleResult {
     case .different:
         return middleResult
-    case .equal(let next):
+    case .palindrome(let next):
         return RecursiveResult(lhs: head, rhs: next)
     }
 }
@@ -79,7 +79,7 @@ do {
             switch $0 {
             case .different:
                 return false
-            case .equal(_):
+            case .palindrome(_):
                 return true
             }
         }
@@ -91,7 +91,7 @@ do {
             switch $0 {
             case .different:
                 return false
-            case .equal(_):
+            case .palindrome(_):
                 return true
             }
     },
@@ -111,7 +111,7 @@ do {
             switch $0 {
             case .different:
                 return false
-            case .equal(_):
+            case .palindrome(_):
                 return true
             }
     },
