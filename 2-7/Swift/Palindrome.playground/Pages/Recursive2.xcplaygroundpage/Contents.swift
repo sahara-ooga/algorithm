@@ -49,10 +49,10 @@ func checkRecursively2<Element: Equatable>(
     }
 }
 // MARK: 検証
-func check<Element: Equatable, MiddlePloduct>(
+func check<Element: Equatable, MiddleProduct>(
     subjects: [[Element]],
-    function: (LinkedListNode<Element>, Int) -> MiddlePloduct,
-    mapping: (MiddlePloduct) -> Bool,
+    function: (LinkedListNode<Element>, Int) -> MiddleProduct,
+    mapping: (MiddleProduct) -> Bool,
     expect: Bool) {
     subjects
         .map { LinkedListNode(collection: $0) }
